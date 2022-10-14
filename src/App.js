@@ -6,8 +6,10 @@ import { Grid } from "@mui/material/";
 import RangeDatePicker from "./components/RangeDatePicker";
 import LineChart from "./components/LineChart";
 import { TestData } from "./components/TestData";
+import FullLineChartComp from "./components/FullLineChartComp";
 
 function App() {
+  console.log(TestData);
   const [fetchData, setFetchData] = useState([]);
 
   const [testData, setTestData] = useState({});
@@ -45,15 +47,22 @@ function App() {
       <Container maxWidth="md" sx={{ bgcolor: "white" }}>
         <Grid container>
           <Grid item xs={12}>
-            <RangeDatePicker onInfoSelect={handleGenerateClick} />
+            <RangeDatePicker onRangeSelect={handleGenerateClick} />
           </Grid>
-          <Grid item xs={12} sx={{ bgcolor: "white" }}>
-            {Object.keys(testData).length === 0 &&
+          <Grid
+            item
+            xs={12}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {/* {Object.keys(testData).length === 0 &&
             testData.constructor === Object ? (
               <h1>Choose dates and word you are looking for</h1>
             ) : (
               <LineChart data={testData} />
-            )}
+            )} */}
+            <FullLineChartComp />
           </Grid>
         </Grid>
       </Container>

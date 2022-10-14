@@ -1,8 +1,26 @@
 import * as React from "react";
 import { Box, TextField, Grid, Button } from "@mui/material/";
+import { useState } from "react";
 import FromDatePicker from "./FromDatePicker";
+import ToDatePicker from "./ToDatePicker";
 
-export default function RangeDatePicker() {
+export default function RangeDatePicker(props) {
+  const [fromDate, setFromDate] = useState([]);
+  const [toDate, setToDate] = useState();
+  const [sentiWord, setSentiWord] = useState("");
+
+  function handleDateSelect(newDate) {
+    if (newDate[0] === "f") {
+      newDate.shift();
+      const joinedDate = newDate.join("");
+      setFromDate(joinedDate);
+    } else {
+      newDate.shift();
+      const joinedDate = newDate.join("");
+      setToDate(joinedDate);
+    }
+  }
+
   return (
     <Grid
       my={10}
@@ -18,16 +36,25 @@ export default function RangeDatePicker() {
           id="outlined-basic"
           label="Outlined"
           variant="outlined"
+          value={sentiWord}
+          onChange={(e) => {
+            setSentiWord(e.target.value);
+          }}
         />
       </Grid>
       <Grid item xs={3} lg={3}>
-        <FromDatePicker />
+        <FromDatePicker onDateSelect={handleDateSelect} />
       </Grid>
       <Grid item xs={3} lg={3}>
-        <FromDatePicker />
+        <ToDatePicker onDateSelect={handleDateSelect} />
       </Grid>
       <Grid item xs={6} lg={2}>
-        <Button variant="contained">Contained</Button>
+        <Button
+          variant="contained"
+          onClick={() => props.onRangeSelect(fromDate, toDate, sentiWord)}
+        >
+          Generate
+        </Button>
       </Grid>
     </Grid>
   );

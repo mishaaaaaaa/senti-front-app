@@ -19,6 +19,7 @@ export default function FromDatePicker(props) {
       }
     }
     res.unshift("f");
+    res.push("-", "0", "1");
     return res;
   };
 
