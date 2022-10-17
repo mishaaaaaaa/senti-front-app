@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export default function FromDatePicker(props) {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(null);
 
   const correctDate = (draftDate) => {
     let res = [];

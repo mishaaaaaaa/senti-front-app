@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export default function ToDatePicker(props) {
-  const [value, setValue] = useState(dayjs());
+  const [value, setValue] = useState(null);
 
   const correctDate = (draftDate) => {
     let res = [];
@@ -28,7 +28,7 @@ export default function ToDatePicker(props) {
       <Stack spacing={3}>
         <DatePicker
           disableFuture
-          label="From"
+          label="To"
           openTo="year"
           views={["year", "month"]}
           value={value}

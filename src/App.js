@@ -6,7 +6,6 @@ import { Grid } from "@mui/material/";
 import RangeDatePicker from "./components/RangeDatePicker";
 import LineChart from "./components/LineChart";
 import { TestData } from "./components/TestData";
-import FullLineChartComp from "./components/FullLineChartComp";
 
 function App() {
   console.log(TestData);
@@ -28,11 +27,17 @@ function App() {
             labels: TestData.map((data) => data.year),
             datasets: [
               {
-                label: "UsersGained",
+                label: "Users Gained",
                 data: TestData.map((data) => data.userGain),
-                hoverBackgroundColor: "red",
-                pointBackgroundColor: "blue",
-                borderColor: "lime",
+                backgroundColor: [
+                  "rgba(75,192,192,1)",
+                  "#ecf0f1",
+                  "#50AF95",
+                  "#f3ba2f",
+                  "#2a71d0",
+                ],
+                borderColor: "black",
+                borderWidth: 2,
               },
             ],
           });
@@ -49,20 +54,13 @@ function App() {
           <Grid item xs={12}>
             <RangeDatePicker onRangeSelect={handleGenerateClick} />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            {/* {Object.keys(testData).length === 0 &&
+          <Grid item xs={12}>
+            {Object.keys(testData).length === 0 &&
             testData.constructor === Object ? (
               <h1>Choose dates and word you are looking for</h1>
             ) : (
-              <LineChart data={testData} />
-            )} */}
-            <FullLineChartComp />
+              <LineChart chartData={testData} />
+            )}
           </Grid>
         </Grid>
       </Container>
